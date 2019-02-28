@@ -30,7 +30,10 @@
         "swoft/i18n": "^1.0",
         "swoft/process": "^1.0",
         "swoft/memory": "^1.0",
-        "swoft/service-governance": "^1.0"
+        "swoft/service-governance": "^1.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "yurunsoft/guzzle-swoole": "^1.1",
+        "wapmorgan/file-type-detector": "^1.1"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "dev-master",

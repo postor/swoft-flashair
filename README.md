@@ -31,3 +31,27 @@ docker-compose up --force-recreate
 ```
 
 测试运行
+
+http://localhost
+
+## 编码
+
+guzzle换成swoole的http，同样要使用`--ignore-platform-reqs`
+
+```
+composer require yurunsoft/guzzle-swoole --ignore-platform-reqs
+composer require guzzlehttp/guzzle --ignore-platform-reqs 
+```
+
+ 最后 `yurunsoft/guzzle-swoole` 没有使用上，关键代码如下
+ 
+ - resources/views/index/index.php 首页内容及JS处理websocket逻辑
+ - app/WebSocket/EchoController.php 没有改代码，但是使用了这个websocket通信
+ - app/Tasks/SyncTask.php 使用自动每秒调度任务来启动扫描flashair的流程，跟新进度会群发websocket
+ - app/Models/Logic/FlashairService.php 具体flashair逻辑，跟新进度会群发websocket
+ - app/Models/Logic/FlashairWorker.php 具体flashair逻辑，跟新进度会群发websocket
+ - app/Models/Logic/FlashairItem.php flashair逻辑所需结构
+
+其他配置修改参考swoft https://doc.swoft.org/
+
+![screenshot](./screenshot.gif)

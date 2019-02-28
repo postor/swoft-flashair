@@ -85,9 +85,42 @@
             </div>
         <?php endforeach; ?>
 
-        <div class="links">
+        <div id="logs" style="color: #000;font-weight: bold;">
         </div>
     </div>
 </div>
+<script>
+    var logs = document.getElementById('logs');
+    var exampleSocket = new WebSocket(window.location.origin.replace('http', 'ws') + "/echo");
+
+    var changeLastFirstAdd = true
+
+    exampleSocket.onmessage = function (event) {
+        if (/^\d+/.test(event.data)) {
+            changeLastLog(event.data)
+            return
+        }
+        changeLastFirstAdd = true
+        appendLog(event.data)
+    }
+
+    function appendLog(log) {
+        var p = document.createElement('p')
+        p.innerHTML = log
+        logs.insertBefore(p, logs.children[0])
+        if (logs.children.length > 20) {
+            logs.children[20].remove()
+        }
+    }
+
+    function changeLastLog(log) {
+        if (!logs.children.length || changeLastFirstAdd) {
+            changeLastFirstAdd = false
+            appendLog(log)
+            return
+        }
+        logs.children[0].innerHTML = log
+    }
+</script>
 </body>
 </html>

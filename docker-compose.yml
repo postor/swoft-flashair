@@ -6,10 +6,14 @@ services:
        build: ./
        ports:
          - "80:80"
-#       volumes:
+       volumes:
 #         - ./:/var/www/swoft
+         - card-storage:/storage
        stdin_open: true 
        tty: true
        privileged: true
        #entrypoint: ["php", "/var/www/swoft/bin/swoft", "start"]
        #entrypoint: ["bash"]
+
+volumes:
+    card-storage:

@@ -32,8 +32,8 @@ class MyProcess implements ProcessInterface
 
         echo "Custom boot process \n";
 
-        $result  = Task::deliverByProcess('sync', 'deliverCo', ['p', 'p2']);
-        var_dump($result);
+        Task::deliverByProcess('sync', 'deliverCo');
+
 
         ProcessBuilder::create('customProcess')->start();
     }
